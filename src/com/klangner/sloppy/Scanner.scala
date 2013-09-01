@@ -45,7 +45,7 @@ object Scanner{
 	/**
 	 * For testing purposes
 	 */
-	def main(args : Array[String]) = {
+	def main(args : Array[String]): Unit = {
 	    val scanner = Scanner
 	    val token = scanner.nextToken("count objects")
 	    println(token)
