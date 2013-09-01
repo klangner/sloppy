@@ -5,6 +5,7 @@ object Scanner{
 
 	abstract class TokenType
 	case object KeywordType extends TokenType
+	case object OperatorType extends TokenType
   	case object IntegerType extends TokenType
   	case object FloatType extends TokenType
   	case object DelimiterType extends TokenType
@@ -17,6 +18,7 @@ object Scanner{
   	val endOfText = ((EndOfTextType, ""), "")
   	val keywords = ("let").split(' ').toSet
   	val delimeters = "()[]{};,."
+  	val operators = "+-*/"
   	  	    
   	val SymbolLiteral = """(?s)([a-zA-Z_]\w+)(.*)""".r
   	val IntegerLiteral = """(?s)(0|[1-9][0-9]*)(.*)""".r
@@ -36,6 +38,7 @@ object Scanner{
         	case rest => {
         		val firstChar = rest(0)
         		if (delimeters contains firstChar) ((DelimiterType, firstChar.toString), rest.substring(1))
+        		else if (operators contains firstChar) ((OperatorType, firstChar.toString), rest.substring(1))
         		else ((ErrorType, rest), rest.substring(1))
         	}	
         }

@@ -11,17 +11,20 @@ object Parser{
 	}
 
   	def parseExpression(text: String): AbstractSyntaxTree = {
-  	    IntegerNode(0)
+  	    parseValue(text)
 	}
 
   	def parseValue(text: String): AbstractSyntaxTree = {
   	    val token = scanner.nextToken(text)
+  	    val value = token._1._2
   	    token._1._1 match{
-  	        case Scanner.IntegerType => 1
-  	        case Scanner.FloatType => 0.1
+  	        case Scanner.IntegerType => IntegerNode(value.toInt)
+  	        case Scanner.FloatType => FloatNode(value.toFloat)
+//  	        case Scanner.OperatorType => 
+//  	          if(value == "-") -parseValue(token._2)
+//  	          else null
+  	        case _ => null
   	    }
-  	    
-  	    null
 	}
 
 	

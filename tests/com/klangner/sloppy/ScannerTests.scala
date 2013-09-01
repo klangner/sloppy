@@ -85,4 +85,14 @@ class ScannerTests extends AssertionsForJUnit {
 		assertEquals(".3", token._1._2)
 		assertEquals(" ", token._2)
 	}
+
+	@Test 
+	def minus() {
+		val cmd = "- "
+		val token = Scanner.nextToken(cmd)
+		val tokenType = token._1._1 
+		assert(tokenType.isInstanceOf[Scanner.OperatorType.type])
+		assertEquals("-", token._1._2)
+		assertEquals(" ", token._2)
+	}
 }

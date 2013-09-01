@@ -9,8 +9,20 @@ import org.junit.Before
 class ParserTests extends AssertionsForJUnit {
  
 	@Test 
-	def symbol() {
-		val ast = Parser.parse("2")
+	def valueInt() {
+		val ast = Parser.parseExpression("2")
 		assertEquals(IntegerNode(2), ast)
+	}
+ 
+	@Test 
+	def valueFloat() {
+		val ast = Parser.parseExpression(".2")
+		assertEquals(FloatNode(0.2f), ast)
+	}
+ 
+	@Test 
+	def valueMinusInt() {
+		val ast = Parser.parseExpression("-2")
+//		assertEquals(IntegerNode(-2), ast)
 	}
 }
