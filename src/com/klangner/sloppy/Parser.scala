@@ -20,20 +20,13 @@ object Parser{
   	    token._1._1 match{
   	        case Scanner.IntegerType => IntegerNode(value.toInt)
   	        case Scanner.FloatType => FloatNode(value.toFloat)
-//  	        case Scanner.OperatorType => 
-//  	          if(value == "-") -parseValue(token._2)
-//  	          else null
+  	        case Scanner.OperatorType => 
+  	            parseValue(token._2) match{
+	  	        	case IntegerNode(value) => IntegerNode(-value)
+	  	        	case FloatNode(value) => FloatNode(-value)
+	  	        	case _ => null
+  	            }
   	        case _ => null
   	    }
-	}
-
-	
-	/**
-	 * For debugging purposes
-	 */
-	def main(args : Array[String]): Unit = {
-	    val parser = Parser
-	    val ast = parser.parse("count objects")
-	    println(ast)
 	}
 }

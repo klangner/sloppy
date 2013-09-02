@@ -23,6 +23,18 @@ class ParserTests extends AssertionsForJUnit {
 	@Test 
 	def valueMinusInt() {
 		val ast = Parser.parseExpression("-2")
-//		assertEquals(IntegerNode(-2), ast)
+		assertEquals(IntegerNode(-2), ast)
+	}
+
+	@Test 
+	def valueMinusMinusInt() {
+		val ast = Parser.parseExpression("--2")
+		assertEquals(IntegerNode(2), ast)
+	}
+
+	@Test 
+	def valueMinusFloat() {
+		val ast = Parser.parseExpression("-2.4")
+		assertEquals(FloatNode(-2.4f), ast)
 	}
 }

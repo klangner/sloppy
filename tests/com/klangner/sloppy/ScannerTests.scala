@@ -9,51 +9,43 @@ import org.junit.Before
 class ScannerTests extends AssertionsForJUnit {
  
 	@Test 
-	def symbol() {
+	def identifier() {
 		val cmd = "command"
 		val token = Scanner.nextToken(cmd)
-		val tokenType = token._1._1 
-		assert(tokenType.isInstanceOf[Scanner.SymbolType.type])
-		assertEquals("", token._2)
+		val expected = ((Scanner.IdentifierType, "command"), "")
+		assertEquals(expected, token)
 	}
 
 	@Test 
-	def twoSymbols() {
-		val cmd = "symbol1 symbol2"
+	def twoIdentifiers() {
+		val cmd = "count events"
 		val token = Scanner.nextToken(cmd)
-		val tokenType = token._1._1 
-		assert(tokenType.isInstanceOf[Scanner.SymbolType.type])
-		assertEquals(" symbol2", token._2)
+		val expected = ((Scanner.IdentifierType, "count"), " events")
+		assertEquals(expected, token)
 	}
 
 	@Test 
-	def spaceSymbol() {
-		val cmd = " symbol "
+	def spaceIdentifier() {
+		val cmd = " a23 "
 		val token = Scanner.nextToken(cmd)
-		val tokenType = token._1._1 
-		assert(tokenType.isInstanceOf[Scanner.SymbolType.type])
-		assertEquals("symbol", token._1._2)
-		assertEquals(" ", token._2)
+		val expected = ((Scanner.IdentifierType, "a23"), " ")
+		assertEquals(expected, token)
 	}
 
 	@Test 
 	def keyword() {
 		val cmd = " let "
 		val token = Scanner.nextToken(cmd)
-		val tokenType = token._1._1 
-		assert(tokenType.isInstanceOf[Scanner.KeywordType.type])
-		assertEquals("let", token._1._2)
-		assertEquals(" ", token._2)
+		val expected = ((Scanner.KeywordType, "let"), " ")
+		assertEquals(expected, token)
 	}
 
 	@Test 
-	def delimeter() {
+	def delimiter() {
 		val cmd = "( "
 		val token = Scanner.nextToken(cmd)
-		val tokenType = token._1._1 
-		assert(tokenType.isInstanceOf[Scanner.DelimiterType.type])
-		assertEquals("(", token._1._2)
-		assertEquals(" ", token._2)
+		val expected = ((Scanner.DelimiterType, "("), " ")
+		assertEquals(expected, token)
 	}
 
 	@Test 
@@ -61,38 +53,31 @@ class ScannerTests extends AssertionsForJUnit {
 		val cmd = "24 "
 		val token = Scanner.nextToken(cmd)
 		val tokenType = token._1._1 
-		assert(tokenType.isInstanceOf[Scanner.IntegerType.type])
-		assertEquals("24", token._1._2)
-		assertEquals(" ", token._2)
+		val expected = ((Scanner.IntegerType, "24"), " ")
+		assertEquals(expected, token)
 	}
 
 	@Test 
 	def float1() {
 		val cmd = "24.3 "
 		val token = Scanner.nextToken(cmd)
-		val tokenType = token._1._1 
-		assert(tokenType.isInstanceOf[Scanner.FloatType.type])
-		assertEquals("24.3", token._1._2)
-		assertEquals(" ", token._2)
+		val expected = ((Scanner.FloatType, "24.3"), " ")
+		assertEquals(expected, token)
 	}
 
 	@Test 
 	def float2() {
 		val cmd = ".3 "
 		val token = Scanner.nextToken(cmd)
-		val tokenType = token._1._1 
-		assert(tokenType.isInstanceOf[Scanner.FloatType.type])
-		assertEquals(".3", token._1._2)
-		assertEquals(" ", token._2)
+		val expected = ((Scanner.FloatType, ".3"), " ")
+		assertEquals(expected, token)
 	}
 
 	@Test 
 	def minus() {
 		val cmd = "- "
 		val token = Scanner.nextToken(cmd)
-		val tokenType = token._1._1 
-		assert(tokenType.isInstanceOf[Scanner.OperatorType.type])
-		assertEquals("-", token._1._2)
-		assertEquals(" ", token._2)
+		val expected = ((Scanner.OperatorType, "-"), " ")
+		assertEquals(expected, token)
 	}
 }

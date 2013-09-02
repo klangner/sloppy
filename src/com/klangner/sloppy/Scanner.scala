@@ -9,7 +9,7 @@ object Scanner{
   	case object IntegerType extends TokenType
   	case object FloatType extends TokenType
   	case object DelimiterType extends TokenType
-  	case object SymbolType extends TokenType
+  	case object IdentifierType extends TokenType
   	case object EndOfTextType extends TokenType
   	case object ErrorType extends TokenType
   	
@@ -20,7 +20,7 @@ object Scanner{
   	val delimeters = "()[]{};,."
   	val operators = "+-*/"
   	  	    
-  	val SymbolLiteral = """(?s)([a-zA-Z_]\w+)(.*)""".r
+  	val IdentifierLiteral = """(?s)([a-zA-Z_]\w+)(.*)""".r
   	val IntegerLiteral = """(?s)(0|[1-9][0-9]*)(.*)""".r
   	val FloatLiteral = """(?s)(\d*\.\d+)(.*)""".r
   	val SkipWhitespace = """(?s)\s+(.*)""".r
@@ -30,9 +30,9 @@ object Scanner{
 		text match {
         	case "" => endOfText
         	case SkipWhitespace(rest) => nextToken(rest)
-        	case SymbolLiteral(token, rest) => 
+        	case IdentifierLiteral(token, rest) => 
         	    if (keywords contains token) ((KeywordType, token), rest)
-        	    else ((SymbolType, token), rest)
+        	    else ((IdentifierType, token), rest)
         	case FloatLiteral(token, rest) => ((FloatType, token), rest) 
         	case IntegerLiteral(token, rest) => ((IntegerType, token), rest)
         	case rest => {
