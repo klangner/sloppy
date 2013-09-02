@@ -53,7 +53,7 @@ class ScannerTests extends AssertionsForJUnit {
 		val cmd = "24 "
 		val token = Scanner.nextToken(cmd)
 		val tokenType = token._1._1 
-		val expected = ((Scanner.IntegerType, "24"), " ")
+		val expected = ((Scanner.NumberType, "24"), " ")
 		assertEquals(expected, token)
 	}
 
@@ -61,7 +61,7 @@ class ScannerTests extends AssertionsForJUnit {
 	def float1() {
 		val cmd = "24.3 "
 		val token = Scanner.nextToken(cmd)
-		val expected = ((Scanner.FloatType, "24.3"), " ")
+		val expected = ((Scanner.NumberType, "24.3"), " ")
 		assertEquals(expected, token)
 	}
 
@@ -69,7 +69,7 @@ class ScannerTests extends AssertionsForJUnit {
 	def float2() {
 		val cmd = ".3 "
 		val token = Scanner.nextToken(cmd)
-		val expected = ((Scanner.FloatType, ".3"), " ")
+		val expected = ((Scanner.NumberType, ".3"), " ")
 		assertEquals(expected, token)
 	}
 

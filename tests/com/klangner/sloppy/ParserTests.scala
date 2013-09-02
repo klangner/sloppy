@@ -11,30 +11,37 @@ class ParserTests extends AssertionsForJUnit {
 	@Test 
 	def valueInt() {
 		val ast = Parser.parseExpression("2")
-		assertEquals(IntegerNode(2), ast)
+		assertEquals(NumberNode(2), ast)
 	}
  
 	@Test 
 	def valueFloat() {
 		val ast = Parser.parseExpression(".2")
-		assertEquals(FloatNode(0.2f), ast)
+		assertEquals(NumberNode(0.2), ast)
 	}
  
 	@Test 
 	def valueMinusInt() {
 		val ast = Parser.parseExpression("-2")
-		assertEquals(IntegerNode(-2), ast)
+		assertEquals(NumberNode(-2), ast)
 	}
 
 	@Test 
 	def valueMinusMinusInt() {
 		val ast = Parser.parseExpression("--2")
-		assertEquals(IntegerNode(2), ast)
+		assertEquals(NumberNode(2), ast)
 	}
 
 	@Test 
 	def valueMinusFloat() {
 		val ast = Parser.parseExpression("-2.4")
-		assertEquals(FloatNode(-2.4f), ast)
+		assertEquals(NumberNode(-2.4), ast)
 	}
+
+//	@Test 
+//	def sum() {
+//		val ast = Parser.parseExpression("3+2.4")
+//		val expected = SumNode(NumberNode(3), NumberNode(2.4f))
+//		assertEquals(expected, ast)
+//	}
 }
