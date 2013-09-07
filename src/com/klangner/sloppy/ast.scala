@@ -1,7 +1,7 @@
 package com.klangner.sloppy
 
-abstract class AbstractSyntaxTree
-case class SumNode(left: AbstractSyntaxTree, right: AbstractSyntaxTree) extends AbstractSyntaxTree
-case class NumberNode(value: Double) extends AbstractSyntaxTree
+abstract class AST
+case class NumberNode(value: Double) extends AST
+case class ExpressionNode(left: AST, operator: String, right: AST) extends AST
   
 

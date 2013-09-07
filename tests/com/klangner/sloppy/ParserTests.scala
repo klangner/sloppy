@@ -38,10 +38,10 @@ class ParserTests extends AssertionsForJUnit {
 		assertEquals(NumberNode(-2.4), ast)
 	}
 
-//	@Test 
-//	def sum() {
-//		val ast = Parser.parseExpression("3+2.4")
-//		val expected = SumNode(NumberNode(3), NumberNode(2.4f))
-//		assertEquals(expected, ast)
-//	}
+	@Test 
+	def sum() {
+		val ast = Parser.parseExpression("3+2.4")
+		val expected = ExpressionNode(NumberNode(3), "+", NumberNode(2.4f))
+		assertEquals(expected, ast)
+	}
 }

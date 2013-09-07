@@ -6,15 +6,15 @@ object Parser{
 
     val scanner = Scanner
     
-  	def parse(text: String): AbstractSyntaxTree = {
+  	def parse(text: String): AST = {
   	    parseExpression(text)
 	}
 
-  	def parseExpression(text: String): AbstractSyntaxTree = {
+  	def parseExpression(text: String): AST = {
   	    parseValue(text)
 	}
 
-  	def parseValue(text: String): AbstractSyntaxTree = {
+  	def parseValue(text: String): AST = {
   	    val token = scanner.nextToken(text)
   	    val value = token._1._2
   	    token._1._1 match{
