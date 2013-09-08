@@ -41,7 +41,7 @@ class ParserTests extends AssertionsForJUnit {
 	@Test 
 	def sum() {
 		val ast = Parser.parseExpression("3+2.4")
-		val expected = ExpressionNode(NumberNode(3), "+", NumberNode(2.4f))
+		val expected = ExpressionNode(NumberNode(3), "+", NumberNode(2.4))
 		assertEquals(expected, ast)
 	}
 }

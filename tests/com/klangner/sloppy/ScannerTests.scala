@@ -12,7 +12,7 @@ class ScannerTests extends AssertionsForJUnit {
 	def identifier() {
 		val cmd = "command"
 		val token = Scanner.nextToken(cmd)
-		val expected = ((Scanner.IdentifierType, "command"), "")
+		val expected = (Scanner.IdentifierToken("command"), "")
 		assertEquals(expected, token)
 	}
 
@@ -20,7 +20,7 @@ class ScannerTests extends AssertionsForJUnit {
 	def twoIdentifiers() {
 		val cmd = "count events"
 		val token = Scanner.nextToken(cmd)
-		val expected = ((Scanner.IdentifierType, "count"), " events")
+		val expected = (Scanner.IdentifierToken("count"), " events")
 		assertEquals(expected, token)
 	}
 
@@ -28,7 +28,7 @@ class ScannerTests extends AssertionsForJUnit {
 	def spaceIdentifier() {
 		val cmd = " a23 "
 		val token = Scanner.nextToken(cmd)
-		val expected = ((Scanner.IdentifierType, "a23"), " ")
+		val expected = (Scanner.IdentifierToken("a23"), " ")
 		assertEquals(expected, token)
 	}
 
@@ -36,7 +36,7 @@ class ScannerTests extends AssertionsForJUnit {
 	def keyword() {
 		val cmd = " let "
 		val token = Scanner.nextToken(cmd)
-		val expected = ((Scanner.KeywordType, "let"), " ")
+		val expected = (Scanner.KeywordToken("let"), " ")
 		assertEquals(expected, token)
 	}
 
@@ -44,7 +44,7 @@ class ScannerTests extends AssertionsForJUnit {
 	def delimiter() {
 		val cmd = "( "
 		val token = Scanner.nextToken(cmd)
-		val expected = ((Scanner.DelimiterType, "("), " ")
+		val expected = (Scanner.DelimiterToken("("), " ")
 		assertEquals(expected, token)
 	}
 
@@ -52,8 +52,7 @@ class ScannerTests extends AssertionsForJUnit {
 	def integer() {
 		val cmd = "24 "
 		val token = Scanner.nextToken(cmd)
-		val tokenType = token._1._1 
-		val expected = ((Scanner.NumberType, "24"), " ")
+		val expected = (Scanner.NumberToken("24"), " ")
 		assertEquals(expected, token)
 	}
 
@@ -61,7 +60,7 @@ class ScannerTests extends AssertionsForJUnit {
 	def float1() {
 		val cmd = "24.3 "
 		val token = Scanner.nextToken(cmd)
-		val expected = ((Scanner.NumberType, "24.3"), " ")
+		val expected = (Scanner.NumberToken("24.3"), " ")
 		assertEquals(expected, token)
 	}
 
@@ -69,7 +68,7 @@ class ScannerTests extends AssertionsForJUnit {
 	def float2() {
 		val cmd = ".3 "
 		val token = Scanner.nextToken(cmd)
-		val expected = ((Scanner.NumberType, ".3"), " ")
+		val expected = (Scanner.NumberToken(".3"), " ")
 		assertEquals(expected, token)
 	}
 
@@ -77,7 +76,7 @@ class ScannerTests extends AssertionsForJUnit {
 	def minus() {
 		val cmd = "- "
 		val token = Scanner.nextToken(cmd)
-		val expected = ((Scanner.OperatorType, "-"), " ")
+		val expected = (Scanner.OperatorToken("-"), " ")
 		assertEquals(expected, token)
 	}
 }
